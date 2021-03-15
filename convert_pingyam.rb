@@ -5,14 +5,18 @@ require 'optparse'
 require_relative 'lib_pingyam.rb'
 
 def check_string(string)
-  @conv.check_syllable(string)
+  string.split(/\s+/).each do |word|
+    if !@conv.check_syllable(word)
+      puts word
+    end
+  end
 end
 
 options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: ./convert_pingyam.rb [options]"
 
-  opts.on('-c', '--check', 'Check if input is valid Cantonese romanization') { options[:check] = true }
+  opts.on('-c', '--check', 'Check if input contains invalid Cantonese romanization') { options[:check] = true }
   opts.on('-i', '--input STRING', 'Input string to be converted') { |v| options[:input] = v }
   opts.on('-f', '--filename FILE', 'Provide file for conversion') { |v| options[:filename] = v }
   opts.on('-s', '--source INDEX', 'Provide index number of romanization to convert from') { |v| options[:source] = v }
@@ -35,4 +39,8 @@ source = source ? source.to_i : 0
 
 @conv = Converter.new(source)
 
-puts @conv.convert_line(pingyam, target, options)
+if options[:check]
+  check_string(pingyam)
+else
+  puts @conv.convert_line(pingyam, target, options)
+end
