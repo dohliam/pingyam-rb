@@ -28,19 +28,21 @@ This repo contains a Ruby library and example conversion tool that makes use of 
 
 In total 11 Cantonese romanization systems are available for conversion using this library. Each variant is identified by a number (`0-10`); this number is also used for identifying the "to" and "from" romanizations to use while converting text.
 
-* `0`: [Yale](https://en.wikipedia.org/wiki/Yale_romanization_of_Cantonese) / 耶魯拼音 - _modified 9-tone Yale_ (Tone numbers)
-* `1`: Yale (Tone diacritics)
-* `2`: [Cantonese Pinyin](https://en.wikipedia.org/wiki/Cantonese_Pinyin) / 教院拼音
-* `3`: [S.L. Wong](https://en.wikipedia.org/wiki/S._L._Wong_(romanisation)) / 黃錫凌 (Tone numbers)
-* `4`: S.L. Wong (tone diacritics)
-* `5`: [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) / 國際音標
-* `6`: [Jyutping](https://en.wikipedia.org/wiki/Jyutping) / 粵拼
-* `7`: [Canton](https://en.wikipedia.org/wiki/Guangdong_Romanization#Cantonese) / 廣州拼音
-* `8`: [Sidney Lau](https://en.wikipedia.org/wiki/Sidney_Lau_romanisation) / 劉錫祥
-* `9`: [Penkyamp](http://cantonese.wikia.com/wiki/Penkyamp) / 粵語拼音字 (Tone numbers)
-* `10`: Penkyamp (tone diacritics)
+Index | Name | Chinese | Variant
+----- | ---- | ------- | -------
+`0` | [Yale](https://en.wikipedia.org/wiki/Yale_romanization_of_Cantonese) | 耶魯拼音 | Tone numbers
+`1` | Yale | | Tone diacritics
+`2` | [Cantonese Pinyin](https://en.wikipedia.org/wiki/Cantonese_Pinyin) | 教院拼音
+`3` | [S.L. Wong](https://en.wikipedia.org/wiki/S._L._Wong_(romanisation)) | 黃錫凌 | Tone numbers
+`4` | S.L. Wong | | Tone diacritics
+`5` | [International Phonetic Alphabet](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) | 國際音標
+`6` | [Jyutping](https://en.wikipedia.org/wiki/Jyutping) | 粵拼
+`7` | [Canton](https://en.wikipedia.org/wiki/Guangdong_Romanization#Cantonese) | 廣州拼音
+`8` | [Sidney Lau](https://en.wikipedia.org/wiki/Sidney_Lau_romanisation) | 劉錫祥
+`9` | [Penkyamp](http://cantonese.wikia.com/wiki/Penkyamp) | 粵語拼音字 | Tone numbers
+`10` | Penkyamp | | Tone diacritics
 
-Note: the library includes a method to convert the Yale transcription to the more traditional 6-tone system (see [below](#modifying-the-output) for details).
+Note: A modified 9-tone Yale system is used by default. However, this library includes a method to convert the Yale transcription to the more traditional 6-tone system (see [below](#modifying-the-output) for details).
 
 ## Requirements
 
