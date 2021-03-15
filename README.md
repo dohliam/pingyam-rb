@@ -122,6 +122,39 @@ puts conv.check_syllable(word)
 # => true
 ```
 
+### converting syllables
+
+You can convert individual syllables using the `convert_syllable` method of the `Converter` class. This method requires three arguments: an initialized dictionary, a string consisting of a single romanized syllable, and an integer representing the index number of the target romanization system.
+
+For example, to convert a syllable in Yale into IPA:
+
+```ruby
+conv = Converter.new
+dict = conv.read_dict
+p conv.convert_syllable(dict, "heung1", 5)
+# => "hœːŋ˥"
+```
+
+To convert from a different source transcription system, initialize the dictionary by providing the corresponding index number to the `read_dict` method.
+
+For example, to convert Jyutping into IPA:
+
+```ruby
+@conv = Converter.new
+@dict = @conv.read_dict(6)
+p @conv.convert_syllable(@dict, "hoeng1", 5)
+# => "hœːŋ˥"
+```
+
+If `11` is passed as the final argument to the `convert_syllable` method, it will return an array containing all of the possible transcriptions of the given syllable:
+
+```ruby
+conv = Converter.new
+dict = conv.read_dict
+p conv.convert_syllable(dict, "heung1", 11)
+# => ["heung1", "heūng", "hoeng1", "hœŋ¹", "'hœŋ", "hœːŋ˥", "hoeng1", "hêng1", "heung¹", "heong1", "heöng"]
+```
+
 ### convert_pingyam
 
 The `convert_pingyam.rb` file found in the root directory is a simple script that demonstrates the use of the `lib_pingyam` library. It allows for quick and easy conversion between arbitrary Cantonese romanization systems on the command-line.
