@@ -2,6 +2,21 @@
 
 This repo contains a Ruby library and example conversion tool that makes use of the open-licensed [Pingyam Database](https://github.com/kfcd/pingyam) to convert between 11 different Cantonese romanization systems and variants.
 
+* [1 Features](#features)
+* [2 Included romanization systems](#included-romanization-systems)
+* [3 Requirements](#requirements)
+* [4 Usage](#usage)
+  * [4.1 lib_pingyam](#lib_pingyam)
+    * [4.1.1 converting syllables](#converting-syllables)
+  * [4.2 convert_pingyam](#convert_pingyam)
+    * [4.2.1 Basic usage](#basic-usage)
+    * [4.2.2 Checking input validity](#checking-input-validity)
+    * [4.2.3 Modifying the output](#modifying-the-output)
+    * [4.2.4 Options](#options)
+* [5 To do](#to-do)
+* [6 See also](#see-also)
+* [7 License](#license)
+
 ## Features
 
 * Converts to and from any Cantonese romanization scheme (including IPA)
