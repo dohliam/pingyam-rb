@@ -42,4 +42,9 @@ class Converter
     end
     result.gsub(/\s+\Z/, "")
   end
+
+  def check_syllable(word)
+    w = @dict[word.downcase]
+    w ? true : false
+  end
 end

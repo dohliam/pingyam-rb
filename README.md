@@ -92,6 +92,36 @@ puts conv.convert_line(pingyam, 11)
 # => yeùd yeú pênk yämp föng ôn yät lam
 ```
 
+The `Converter` class has a built-in method for checking if a given string is a valid syllable in any of the available Cantonese romanization systems:
+
+```ruby
+conv = Converter.new
+# checks against syllables in Yale (numerals) by default
+
+word = "heung1"
+puts conv.check_syllable(word)
+# => true
+
+word = "heungg1"
+puts conv.check_syllable(word)
+# => false
+```
+
+To check syllables in any other romanization system, just specify it when initializing the `Converter` class:
+
+```ruby
+conv = Converter.new(6)
+# checks valid Jyutping syllables
+
+word = "heung1"
+puts conv.check_syllable(word)
+# => false
+
+word = "hoeng1"
+puts conv.check_syllable(word)
+# => true
+```
+
 ### convert_pingyam
 
 The `convert_pingyam.rb` file found in the root directory is a simple script that demonstrates the use of the `lib_pingyam` library. It allows for quick and easy conversion between arbitrary Cantonese romanization systems on the command-line.
