@@ -1,21 +1,38 @@
 #!/usr/bin/ruby
 
+require 'optparse'
+
 require_relative 'lib_pingyam.rb'
 
-conv = Converter.new
-
-pingyam = ARGV[0]
-
-if !pingyam
-  abort("Please enter some romanized Cantonese text to convert.")
+def check_string(string)
+  @conv.check_syllable(string)
 end
 
-romsys = ARGV[1]
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: ./convert_pingyam.rb [options]"
 
-if !romsys
-  romsys = 1
-else
-  romsys = romsys.to_i
+  opts.on('-c', '--check', 'Check if input is valid Cantonese romanization') { options[:check] = true }
+  opts.on('-i', '--input STRING', 'Input string to be converted') { |v| options[:input] = v }
+  opts.on('-f', '--filename FILE', 'Provide file for conversion') { |v| options[:filename] = v }
+  opts.on('-s', '--source INDEX', 'Provide index number of romanization to convert from') { |v| options[:source] = v }
+  opts.on('-S', '--superscript', 'Print tone numerals as superscript') { options[:superscript] = true }
+  opts.on('-t', '--target INDEX', 'Provide index number of romanization to convert into') { |v| options[:target] = v }
+  opts.on('-Y', '--yale', 'Normalize Yale to 6-tone traditional system') { options[:yale] = true }
+
+end.parse!
+
+if !options[:input] && !options[:filename]
+  abort("  Please provide some input text or a filename.")
 end
 
-puts conv.convert_line(pingyam, romsys)
+pingyam = options[:input]
+target = options[:target]
+source = options[:source]
+
+target = target ? target.to_i : 1
+source = source ? source.to_i : 0
+
+@conv = Converter.new(source)
+
+puts @conv.convert_line(pingyam, target, options)
