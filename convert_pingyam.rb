@@ -12,6 +12,17 @@ def check_string(string)
   end
 end
 
+def convert_file(options, target)
+  filename = options[:filename]
+  if !File.exist?(filename)
+    abort("  Specified file does not exist: '#{filename}'")
+  end
+  File.read(filename).each_line do |line|
+    pingyam = line.chomp
+    puts @conv.convert_line(pingyam, target, options)
+  end
+end
+
 options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: ./convert_pingyam.rb [options]"
@@ -41,6 +52,8 @@ source = source ? source.to_i : 0
 
 if options[:check]
   check_string(pingyam)
+elsif options[:filename]
+  convert_file(options, target)
 else
   puts @conv.convert_line(pingyam, target, options)
 end
