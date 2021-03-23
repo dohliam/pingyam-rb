@@ -36,7 +36,7 @@ class Converter
     if method == 11
       11.times do |c|
         line_array.each do |word|
-          result << convert_syllable(@dict, word, c) + " "
+          result << convert_syllable(@dict, word, c, mods) + " "
         end
         result << "\n"
       end
