@@ -20,10 +20,10 @@ class Converter
   def read_dict(base_rom=0)
     pwd = Dir.pwd
     Dir.chdir(File.dirname(__FILE__))
-    file = File.open("pingyam/pingyambiu")
+    file = File.read("pingyam/pingyambiu")
     Dir.chdir(pwd)
     dict = {}
-    file.each do |line|
+    file.each_line do |line|
       line_split = line.chomp.split("\t")
       dict[line_split[base_rom]] = line_split
     end
