@@ -1,6 +1,6 @@
-# pingyam.rb - Cantonese romanization conversion in Ruby
+# pingyam-rb - Cantonese romanization conversion in Ruby
 
-This repo contains a Ruby library and example conversion tool that makes use of the open-licensed [Pingyam Database](https://github.com/kfcd/pingyam) to convert between 11 different Cantonese romanization systems and variants.
+This repository contains a Ruby library and example conversion tool that makes use of the open-licensed [Pingyam Database](https://github.com/kfcd/pingyam) to convert between 11 different Cantonese romanization systems and variants.
 
 * [1 Features](#features)
 * [2 Included romanization systems](#included-romanization-systems)
@@ -143,25 +143,23 @@ puts conv.check_syllable(word)
 
 #### converting syllables
 
-You can convert individual syllables using the `convert_syllable` method of the `Converter` class. This method requires three arguments: an initialized dictionary, a string consisting of a single romanized syllable, and an integer representing the index number of the target romanization system.
+You can convert individual syllables using the `convert_syllable` method of the `Converter` class. This method requires two arguments: a string consisting of a single romanized syllable and an integer representing the index number of the target romanization system.
 
 For example, to convert a syllable in Yale into IPA:
 
 ```ruby
 conv = Converter.new
-dict = conv.read_dict
-p conv.convert_syllable(dict, "heung1", 5)
+p conv.convert_syllable("heung1", 5)
 # => "hœːŋ˥"
 ```
 
-To convert from a different source transcription system, initialize the dictionary by providing the corresponding index number to the `read_dict` method.
+To convert from a different source transcription system, just provide the corresponding index number when initializing the Converter object.
 
 For example, to convert Jyutping into IPA:
 
 ```ruby
-@conv = Converter.new
-@dict = @conv.read_dict(6)
-p @conv.convert_syllable(@dict, "hoeng1", 5)
+@conv = Converter.new(6)
+p @conv.convert_syllable("hoeng1", 5)
 # => "hœːŋ˥"
 ```
 
@@ -169,8 +167,7 @@ If `11` is passed as the final argument to the `convert_syllable` method, it wil
 
 ```ruby
 conv = Converter.new
-dict = conv.read_dict
-p conv.convert_syllable(dict, "heung1", 11)
+p conv.convert_syllable("heung1", 11)
 # => ["heung1", "heūng", "hoeng1", "hœŋ¹", "'hœŋ", "hœːŋ˥", "hoeng1", "hêng1", "heung¹", "heong1", "heöng"]
 ```
 
@@ -196,7 +193,7 @@ To convert the text into Jyutping instead, just provide the index number for Jyu
 
 As can be seen, the text has now been converted into Jyutping romanization. Conversion into other systems is equally easy -- just replace `6` above with the index number of the system you wish to use for output.
 
-To convert from a different source romanization system (e.g., to convert from Jyuting to Yale, or from S.L. Wong to Jyutping), provide the source system index number as a parameter using the `-s` (`--source`) option. The example below converts from Jyutping to Yale with diacritics:
+To convert from a different source romanization system (e.g., to convert from Jyutping to Yale, or from S.L. Wong to Jyutping), provide the source system index number as a parameter using the `-s` (`--source`) option. The example below converts from Jyutping to Yale with diacritics:
 
 ```bash
 ./convert_pingyam.rb -i "This is a test: jyut6 jyu5 ping3 jam1 zyun2 wun6" -s 6 -t 1
@@ -215,7 +212,7 @@ Invalid romanization syllables can be identified using the `-c` (`--check`) opti
 # => test:
 ```
 
-The output in the above example contains words that are not valid syllables in Yale romanization (the default, since no other system was specified). To use a different romanization systems just provide the appropriate index number using the `-s` option. For example, the command below checks for invalid syllables in Jyutping:
+The output in the above example contains words that are not valid syllables in Yale romanization (the default, since no other system was specified). To use a different romanization system just provide the appropriate index number using the `-s` option. For example, the command below checks for invalid syllables in Jyutping:
 
 ```bash
 ./convert_pingyam.rb -i "This is a test: Yut9 yu5 ping3 yam1 jyun2 wun6" -c -s 6
@@ -261,12 +258,13 @@ The following options can be provided to `convert_pingyam.rb` to control the con
 * ~~Support for traditional 6-tone Yale (with numerals)~~
 * ~~Conversion of tone numbers to superscript~~
 * Optional HTML output
-* Handle files and pipes as input
+* Handle ~~files and~~ pipes as input
 
 ## See also
 
 * [Pingyam database](https://github.com/kfcd/pingyam)
 * [pingyam-js](https://github.com/dohliam/pingyam-js) - Online Cantonese Romanization Converter
+* [pinyin-rb](https://github.com/dohliam/pinyin-rb) - Mandarin Chinese transcription conversion in Ruby
 
 ## License
 

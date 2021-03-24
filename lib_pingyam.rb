@@ -3,8 +3,8 @@ class Converter
     @dict = read_dict(base_rom)
   end
 
-  def convert_syllable(dict, word, method, mods=nil)
-    w = dict[word.downcase]
+  def convert_syllable(word, method, mods=nil)
+    w = @dict[word.downcase]
     if w
       syllable = w[method]
       if mods
@@ -36,13 +36,13 @@ class Converter
     if method == 11
       11.times do |c|
         line_array.each do |word|
-          result << convert_syllable(@dict, word, c, mods) + " "
+          result << convert_syllable(word, c, mods) + " "
         end
         result << "\n"
       end
     else
       line_array.each do |word|
-        result << convert_syllable(@dict, word, method, mods) + " "
+        result << convert_syllable(word, method, mods) + " "
       end
     end
     result.gsub(/\s+\Z/, "")
